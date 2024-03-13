@@ -30,4 +30,4 @@ The project aims to maintain its focus on Python implementation. However, contri
 Contributions are welcome! If you'd like to contribute to the project, please fork the repository, make your changes, and submit a pull request.
 
 ## Licence
-This project is licensed under the MIT License - see the LICENSE file for details. You are free to use, modify, and distribute this project for any purpose.
+This project is licenced under the MIT License - see the LICENSE file for details. You are free to use, modify, and distribute this project for any purpose.
