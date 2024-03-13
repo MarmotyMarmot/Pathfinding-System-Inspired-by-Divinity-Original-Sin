@@ -16,9 +16,11 @@ This project aims to replicate the pathfinding system found in popular games suc
 5. Use the UI to load your map and set start and end points for pathfinding.
 
 ## UI
+![UI](https://github.com/MarmotyMarmot/Pathfinding-System-Inspired-by-Divinity-Original-Sin/assets/45321229/e27ead99-e03d-4f2d-9b7e-eefbc0a6b888)
 
 
 ## Exemplary Map
+![map](https://github.com/MarmotyMarmot/Pathfinding-System-Inspired-by-Divinity-Original-Sin/assets/45321229/c8271283-a65b-416c-bafd-eed19df321c8)
 
 
 ## Future Plans
