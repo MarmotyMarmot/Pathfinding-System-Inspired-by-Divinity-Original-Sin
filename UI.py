@@ -1,3 +1,5 @@
+import time
+
 from numpy import ndarray
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QFormLayout, QLabel, QPushButton, QFileDialog
 from PyQt6.QtGui import QPixmap, QImage, QMouseEvent
@@ -41,6 +43,7 @@ class MapImage(QLabel):
 
             start_point = (self.__start_point.x(), self.__start_point.y())
             end_point = (self.__end_point.x(), self.__end_point.y())
+
             loader = MapLoader(self.__img_path)  # Load the map
             map_from_image = loader.get_map()  # Get the waypoint/door map
 
@@ -65,7 +68,7 @@ class MapInterface(QDialog):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Map")
+        self.setWindowTitle("PathFinding UI")
         self.__layout_setup()
         self.show()
 

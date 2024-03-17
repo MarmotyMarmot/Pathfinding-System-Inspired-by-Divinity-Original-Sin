@@ -1,3 +1,5 @@
+import math
+
 import cv2
 
 from numpy import ndarray
@@ -9,6 +11,7 @@ from core.map_loader import Area
 class Node:
     """Node class containing
     parent: Node, position: tuple and children: list objects"""
+
     def __init__(self, parent, position: tuple, children: list):
         self.parent = parent
         self.children = children
@@ -24,6 +27,7 @@ class Node:
 
 class PathMaker:
     """Class for calculation of the most optimal path between two points on the map. Uses the A* algorithm."""
+
     def __init__(self, image: ndarray, waypoint_list: list[Waypoint]):
         # For conversion and visual representation
         self.__mazeImg = image
@@ -94,9 +98,10 @@ class PathMaker:
                 if len([closed_child for closed_child in closed_list if closed_child == child]) > 0:
                     continue
 
-                child.g = (current_door.g + ((child.position[0] - current_door.position[0]) ** 2)
-                           + ((child.position[1] - current_door.position[1]) ** 2))
-                child.h = ((child.position[0] - end.position[0]) ** 2) + ((child.position[1] - end.position[1]) ** 2)
+                child.g = (current_door.g + math.sqrt(((child.position[0] - current_door.position[0]) ** 2) +
+                                                      ((child.position[1] - current_door.position[1]) ** 2)))
+                child.h = (math.sqrt(((child.position[0] - end.position[0]) ** 2) +
+                                     ((child.position[1] - end.position[1]) ** 2)))
                 child.f = child.g + child.h
 
                 if len([open_node for open_node in open_list if
@@ -136,7 +141,7 @@ class PathMaker:
                 return path  # Finished
 
             children = []
-            for new_position in [(0, -1), (0, 1), (-1, 0), (1, 0)]:
+            for new_position in [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]:
                 node_position = (current_node.position[0] + new_position[0], current_node.position[1] + new_position[1])
                 h = len(self.__mazeArray)
                 w = len(self.__mazeArray[0])
@@ -156,12 +161,11 @@ class PathMaker:
                     continue
 
                 child.g = current_node.g + 1
-                child.h = ((child.position[0] - end.position[0]) ** 2) + ((child.position[1] - end.position[1]) ** 2)
+                child.h = ((child.position[0] - end.position[0]) ** 2) +((child.position[1] - end.position[1]) ** 2)
                 child.f = child.g + child.h
 
                 if len([open_node for open_node in open_list if
                         child.position == open_node.position and child.g > open_node.g]) > 0:
                     continue
-
                 self.__draw_point((child.position[1], child.position[0]), color=(0, 255, 0))
                 open_list.append(child)
