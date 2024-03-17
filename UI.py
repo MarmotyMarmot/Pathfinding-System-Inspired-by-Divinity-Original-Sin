@@ -1,5 +1,3 @@
-import time
-
 from numpy import ndarray
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QFormLayout, QLabel, QPushButton, QFileDialog
 from PyQt6.QtGui import QPixmap, QImage, QMouseEvent
